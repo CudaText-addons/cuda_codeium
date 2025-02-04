@@ -9,6 +9,9 @@ import cudatext_cmd as cmds
 from .dlg import Dialog
 from .util import split_text_by_length,language_enum,lex_ids,is_editor_valid
 
+from cudax_lib import get_translation
+_ = get_translation(__file__)  # I18N
+
 PLUGIN_NAME = __name__
 LOG = False
 
@@ -98,7 +101,7 @@ class Command:
     def get_token(self):
         url = 'https://www.codeium.com/profile?response_type=token&redirect_uri=vim-show-auth-token&state=a&scope=openid+profile+email&redirect_parameters_type=query'
         apx.safe_open_url(url)
-        self.token = dlg_input('Your token: ', '')
+        self.token = dlg_input(_('Your token: '), '')
         
         # save token to .ini
         global option_token
@@ -139,7 +142,7 @@ class Command:
             BIN_SUFFIX
         )
         
-        msg_status('{}: Downloading server...'.format(self.name), process_messages=True)
+        msg_status(_('{}: Downloading server...').format(self.name), process_messages=True)
         response = requests.get(url)
         
         if response.status_code == 200:
@@ -216,7 +219,7 @@ class Command:
             self.find_port()
             return
         
-        msg_status('{}: Starting...'.format(self.name))
+        msg_status(_('{}: Starting...').format(self.name))
         
         if self.token is None:
             self.get_token()
@@ -607,7 +610,7 @@ class Command:
         compression_flag = b'\x00'
         data = compression_flag + len(data).to_bytes(4, 'big') + data
         
-        msg_status('{}: waiting for bot..'.format(self.name), process_messages=True)
+        msg_status(_('{}: waiting for bot..').format(self.name), process_messages=True)
         
         self.in_process_of_asking = False
         self.in_process_of_answering = True
@@ -675,9 +678,9 @@ class Command:
                         app_idle()
             
             if not messages:
-                msg_status('{}: no answer :('.format(self.name), process_messages=True)
+                msg_status(_('{}: no answer :(').format(self.name), process_messages=True)
             else:
-                msg_status('{}: answer recieved'.format(self.name), process_messages=True)
+                msg_status(_('{}: answer recieved').format(self.name), process_messages=True)
                 self.messages.append(messages[-1].chat_message)
             return
                     
@@ -789,7 +792,7 @@ class Command:
         return items
         
     def shutdown(self, *args, **vargs):
-        msg_status('{}: Shutting down'.format(self.name))
+        msg_status(_('{}: Shutting down').format(self.name))
         
         self.shutting_down = True
         self.port = None
@@ -827,7 +830,7 @@ class Command:
             ed_h = ed_self.get_prop(PROP_HANDLE_SELF)
             if ed_h in self.conversations.values():
                 self.cancel = True
-                msg_status('{}: User canceled request.'.format(self.name))
+                msg_status(_('{}: User canceled request.').format(self.name))
         elif key == 27:
             self.hide_hint()
         elif key == 9 and option_tab_completion:
