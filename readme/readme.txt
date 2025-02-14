@@ -20,27 +20,30 @@ To automatically start Codeium use "Toggle: log in on startup" command.
 Also you can set hotkey for `Get completions` command. For example Alt+\. This will give a list of completions.
 For chatting with AI, use command `Codeium: Chat...`
 
-
 Enjoy!
 
 #### Configuration
 
-`tab_completion` - completion by using TAB key. completion hint will be shown in the top-right corner.
+"tab_completion" - completion by using TAB key. completion hint will be shown in the top-right corner.
 
-`append_mode` - new chat questions/answers will be appended to old ones. disable it to clear chat on every question.
+"append_mode" - new chat questions/answers will be appended to old ones. disable it to clear chat on every question.
 
-`version` - locked version of language server. you can update by setting this option to a new value and deleting old server binary.
+"version" - locked version of language server. you can update by setting this option to a new value and deleting old server binary.
 
 #### FAQ
 
- - How to stop request?
- - User can stop request by pressing ESC/Space/Enter
+ Q: How to stop request?
+ A: User can stop request by pressing Esc/Space/Enter.
  
- - How to make tab completion hint appear faster?
- - Tune the following CudaText settings:
+ Q: How to make tab completion hint appear faster?
+ A: Tune the following CudaText settings:
    "py_change_slow"
    "ui_timer_idle"
 
+ Q: With Codeium 1.38 I see that completions do not work.
+ A: You got the enterprise version of Codeium. It is indeed does not work.
+   Get the usual version (at the time of writing, 2025.02, it is 1.8.86).
 
-Author: veksha (https://github.com/veksha)
+
+Author: Yuriy Balyuk (https://github.com/veksha)
 License: MIT
